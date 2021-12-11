@@ -1,1 +1,12 @@
 __pycache__/
+/.idea/.gitignore
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/Object-detection.iml
+/.idea/vcs.xml
+/outputs/bird.avi
+/outputs/output.avi
+/outputs/output_old.avi
+/outputs/output.avi
+/outputs/output2.avi

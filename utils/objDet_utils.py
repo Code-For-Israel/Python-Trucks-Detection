@@ -2,8 +2,8 @@ import os
 from utils.app_utils import *
 import numpy as np
 import tensorflow as tf
-from object_detection.utils import label_map_util
-from object_detection.utils import visualization_utils as vis_util
+from utils import label_map_util
+from utils import visualization_utils as vis_util
 
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
@@ -58,7 +58,7 @@ def worker(input_q, output_q):
     detection_graph = tf.Graph()
     with detection_graph.as_default():
         od_graph_def = tf.compat.v1.GraphDef()
-        with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
+        with tf.io.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
             serialized_graph = fid.read()
             od_graph_def.ParseFromString(serialized_graph)
             tf.import_graph_def(od_graph_def, name='')

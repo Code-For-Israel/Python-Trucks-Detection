@@ -1,0 +1,1 @@
+C:\Users\tomer.a\AppData\Local\Programs\Python\Python39\python.exe my-object-detection.py -d 1 -o 1 -i test.mp4
