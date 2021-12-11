@@ -556,10 +556,10 @@ def visualize_boxes_and_labels_on_image_array(
         instance_boundaries=None,
         keypoints=None,
         use_normalized_coordinates=False,
-        max_boxes_to_draw=20,
+        max_boxes_to_draw=100,
         min_score_thresh=.5,
         agnostic_mode=False,
-        line_thickness=4,
+        line_thickness=1,
         groundtruth_box_visualization_color='black',
         skip_scores=False,
         skip_labels=False):
@@ -613,6 +613,8 @@ def visualize_boxes_and_labels_on_image_array(
     if not max_boxes_to_draw:
         max_boxes_to_draw = boxes.shape[0]
     for i in range(min(max_boxes_to_draw, boxes.shape[0])):
+        # if "car" in classes[i]:
+        #     continue
         if scores is None or scores[i] > min_score_thresh:
             box = tuple(boxes[i].tolist())
             if instance_masks is not None:
@@ -632,6 +634,8 @@ def visualize_boxes_and_labels_on_image_array(
                         else:
                             class_name = 'N/A'
                         display_str = str(class_name)
+                        if display_str == "car" or display_str == "traffic light":
+                            continue
                 if not skip_scores:
                     if not display_str:
                         display_str = '{}%'.format(int(100 * scores[i]))
@@ -645,8 +649,8 @@ def visualize_boxes_and_labels_on_image_array(
                     last_box_coords = box
                     box_to_color_map[box] = STANDARD_COLORS[
                         classes[i] % len(STANDARD_COLORS)]
-                    print(classes[i])
-                    print(class_name)
+                    ##("We found: " + classes[i])
+                    print("We found: " + class_name)
 
     # Draw all boxes onto image.
     for box, color in box_to_color_map.items():
@@ -785,8 +789,8 @@ def return_coordinates(
                             last_box_coords = box
                             box_to_color_map[box] = STANDARD_COLORS[
                                 classes[i] % len(STANDARD_COLORS)]
-                            print(classes[i])
-                            print(class_name)
+                            #print(classes[i])
+                            #print(class_name)
 
     # Draw all boxes onto image.
 
@@ -798,15 +802,15 @@ def return_coordinates(
         ymin, xmin, ymax, xmax = box
         height, width, channels = image.shape
         height = height * .5
-        print(height)
-        print(ymax)
-        print(ymin)
+        #print(height)
+        #print(ymax)
+        #print(ymin)
         if (ymin / ymax > .5):
             ymin = ymin * 1.75
             ymax = ymax * .55
             xmax = xmax * .45
             # xmin=xmin*.85
-            print("Fixed Values")
+            #print("Fixed Values")
 
         ymin = int(ymin * height)
         ymax = int(ymax * height)
