@@ -39,6 +39,9 @@ All possible arguments are:
 
 ```
 
+![alt text](https://github.com/TomerAdmon/Python-Trucks-Detection/blob/master/Screenshot_2.png)
+
+
 ### notes
 - FPS configuration is set to <5 FPS, changes could be made in the app_utils.py file
 - Output is set not to mark cars or traffic lights 
